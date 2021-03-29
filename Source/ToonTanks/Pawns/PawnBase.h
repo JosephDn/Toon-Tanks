@@ -26,16 +26,16 @@ private:
 	// Variables
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Projectile Type", meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<AProjectileBase> ProjectileClass;
-	
+
 public:
 	// Sets default values for this pawn's properties
 	APawnBase();
+	void PawnDestroyed();
+	virtual void HandleDestruction();
 
 protected:
 
 	void RotateTurret(FVector LookAtTarget);
 
 	void Fire();
-
-	virtual void HandleDestruction();
 };
