@@ -6,6 +6,7 @@
 #include "PawnBase.h"
 #include "PawnTurret.generated.h"
 
+class APawnTank;
 /**
  * 
  */
@@ -19,9 +20,18 @@ private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat", meta = (AllowPrivateAccess = "true"))
 	float FireRate = 2.0f;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat", meta = (AllowPrivateAccess = "true"))
+	float FireRange = 100.0f;
+	
+	FTimerHandle FireRateTimerHandle;
+	APawnTank* PlayerPawn;
+
 	void CheckFireCondition();
 
-	FTimerHandle FireRateTimerHandle;
+	float ReturnDistanceToPlayer();
+
+	
+
 
 public:
 	// Called every frame
@@ -30,4 +40,6 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
+	virtual void HandleDestruction() override;
 };
